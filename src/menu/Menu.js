@@ -26,8 +26,8 @@ function Menu(props) {
       <Header isLoggedIn={props.isLoggedIn} username={props.username} />
       <Router>
         <div className="row h-100">
-          <div className="col-2 bg-light " style={{ marginTop: 100 }}>
-            <ul className="list-group">
+          <div className="col-2 bg-light ">
+            <ul className="list-group" style={{ marginTop: 100 }}>
               <li className="p-3 nav-item">
                 <Link
                   to="/Signup"
