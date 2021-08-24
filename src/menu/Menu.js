@@ -1,6 +1,12 @@
 import React from "react";
 import "./Menu.module.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 import FeedbackPage from "../pages/FeedbackPage";
 import ShoppingPage from "../pages/ShoppingPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
@@ -16,72 +22,69 @@ function Menu(props) {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <Router>
-          <Header isLoggedIn={props.isLoggedIn} username={props.username} />
-
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav">
-                <li className="p-3 nav-item">
-                  <Link
-                    to="/Signup"
-                    onClick={!props.isLoggedIn ? undefined : noAccessAlert}
+    <div className="h-100">
+      <Header isLoggedIn={props.isLoggedIn} username={props.username} />
+      <Router>
+        <div className="row h-100">
+          <div className="col-2 bg-light " style={{ marginTop: 100 }}>
+            <ul className="list-group">
+              <li className="p-3 nav-item">
+                <Link
+                  to="/Signup"
+                  onClick={!props.isLoggedIn ? undefined : noAccessAlert}
+                >
+                  <button className="btn btn-light" disabled={props.isLoggedIn}>
+                    Signup
+                  </button>
+                </Link>
+              </li>
+              <li className="p-3 nav-item">
+                <Link
+                  onClick={props.isLoggedIn ? undefined : noAccessAlert}
+                  to="/Shopping"
+                >
+                  <button
+                    className="btn btn-light"
+                    disabled={!props.isLoggedIn}
                   >
-                    <button
-                      className="btn btn-info"
-                      disabled={props.isLoggedIn}
-                    >
-                      Signup
-                    </button>
-                  </Link>
-                </li>
-                <li className="p-3 nav-item">
-                  <Link
-                    onClick={props.isLoggedIn ? undefined : noAccessAlert}
-                    to="/Shopping"
-                  >
-                    <button
-                      className="btn btn-info"
-                      disabled={!props.isLoggedIn}
-                    >
-                      Start Shopping
-                    </button>
-                  </Link>
-                </li>
+                    Start Shopping
+                  </button>
+                </Link>
+              </li>
 
-                <li className="p-3 nav-item">
-                  <Link
-                    onClick={!props.isLoggedIn ? noAccessAlert : undefined}
-                    to="/Feedback"
+              <li className="p-3 nav-item">
+                <Link
+                  onClick={!props.isLoggedIn ? noAccessAlert : undefined}
+                  to="/Feedback"
+                >
+                  <button
+                    className="btn btn-light"
+                    disabled={!props.isLoggedIn}
                   >
-                    <button
-                      className="btn btn-info"
-                      disabled={!props.isLoggedIn}
-                    >
-                      Feedback
-                    </button>
-                  </Link>
-                </li>
-              </ul>
+                    Feedback
+                  </button>
+                </Link>
+              </li>
+            </ul>
 
-              {/* {props.isLoggedIn === false && <Redirect to="/Signup" />} */}
-            </div>
-          </nav>
-          <Switch>
-            <Route path="/Feedback">
-              <FeedbackPage />
-            </Route>
-            <Route path="/Shopping">
-              <ShoppingPage />
-            </Route>
-            <Route path="/Signup">
-              <SignUpPage />
-            </Route>
-          </Switch>
-        </Router>
-      </header>
+            {props.isLoggedIn === false && <Redirect to="/Signup" />}
+          </div>
+
+          <div class="col-9" style={{ marginTop: 110 }}>
+            <Switch>
+              <Route path="/Feedback">
+                <FeedbackPage />
+              </Route>
+              <Route path="/Shopping">
+                <ShoppingPage />
+              </Route>
+              <Route path="/Signup">
+                <SignUpPage />
+              </Route>
+            </Switch>
+          </div>
+        </div>
+      </Router>
       <div
         id="myAlert"
         hidden={true}

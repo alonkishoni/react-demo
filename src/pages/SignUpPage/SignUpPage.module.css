@@ -10,3 +10,11 @@
   margin: 50px auto;
   font-size: 15px;
 }
+
+input:required:invalid,
+input:focus:invalid {
+  border-color: red;
+}
+input:required:valid {
+  border-color: none;
+}

@@ -9,11 +9,7 @@ function App() {
   const loggedIn = useSelector((state) => state.loggedIn);
   const user = useSelector((state) => state.formDetails.firstName);
 
-  return (
-    <div>
-      <Menu username={user} isLoggedIn={loggedIn} />
-    </div>
-  );
+  return <Menu username={user} isLoggedIn={loggedIn} className="h-100" />;
 }
 
 export default App;

@@ -7,10 +7,12 @@ function SignUpForm2(props) {
             <b>Phone: </b>
             <input
               defaultValue={props.signupData.phone}
-              type="number"
+              type="phone"
               className="form-control mb-2"
               placeholder="Phone"
               required="required"
+              pattern="[0-9]{10}"
+              title="Please enter your phone number. 10 digits"
               ref={props.phoneInputRef}
             ></input>
           </div>
@@ -22,6 +24,8 @@ function SignUpForm2(props) {
               className="form-control mb-2"
               placeholder="Address"
               required="required"
+              pattern="^[#.0-9a-zA-Z\s,-]+$"
+              title="Please enter your street address. no symbols allowed"
               ref={props.addressInputRef}
             ></input>
           </div>
