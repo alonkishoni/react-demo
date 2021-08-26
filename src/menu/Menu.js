@@ -4,13 +4,14 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
+  NavLink,
   Redirect,
 } from "react-router-dom";
 import FeedbackPage from "../pages/FeedbackPage";
 import ShoppingPage from "../pages/ShoppingPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import Header from "./Header";
+import Alert from "./Alert";
 
 function Menu(props) {
   function noAccessAlert(event) {
@@ -28,49 +29,55 @@ function Menu(props) {
         <div className="row h-100">
           <div className="col-2 bg-light ">
             <ul className="list-group" style={{ marginTop: 100 }}>
-              <li className="p-3 nav-item">
-                <Link
+              <li
+                className="p-3 nav-item"
+                onClick={!props.isLoggedIn ? undefined : noAccessAlert}
+              >
+                <NavLink
+                  className={
+                    !props.isLoggedIn ? "nav-link" : "nav-link disabled"
+                  }
                   to="/Signup"
-                  onClick={!props.isLoggedIn ? undefined : noAccessAlert}
+                  disabled={props.isLoggedIn}
                 >
-                  <button className="btn btn-light" disabled={props.isLoggedIn}>
-                    Signup
-                  </button>
-                </Link>
+                  Signup
+                </NavLink>
               </li>
-              <li className="p-3 nav-item">
-                <Link
-                  onClick={props.isLoggedIn ? undefined : noAccessAlert}
+              <li
+                className="p-3 nav-item"
+                onClick={props.isLoggedIn ? undefined : noAccessAlert}
+              >
+                <NavLink
+                  className={
+                    props.isLoggedIn ? "nav-link" : "nav-link disabled"
+                  }
                   to="/Shopping"
+                  disabled={!props.isLoggedIn}
                 >
-                  <button
-                    className="btn btn-light"
-                    disabled={!props.isLoggedIn}
-                  >
-                    Start Shopping
-                  </button>
-                </Link>
+                  Start Shopping
+                </NavLink>
               </li>
 
-              <li className="p-3 nav-item">
-                <Link
-                  onClick={!props.isLoggedIn ? noAccessAlert : undefined}
+              <li
+                className="p-3 nav-item"
+                onClick={!props.isLoggedIn ? noAccessAlert : undefined}
+              >
+                <NavLink
+                  className={
+                    props.isLoggedIn ? "nav-link" : "nav-link disabled"
+                  }
                   to="/Feedback"
+                  disabled={!props.isLoggedIn}
                 >
-                  <button
-                    className="btn btn-light"
-                    disabled={!props.isLoggedIn}
-                  >
-                    Feedback
-                  </button>
-                </Link>
+                  Feedback
+                </NavLink>
               </li>
             </ul>
 
             {props.isLoggedIn === false && <Redirect to="/Signup" />}
           </div>
 
-          <div class="col-9" style={{ marginTop: 110 }}>
+          <div className="col-9" style={{ marginTop: 110 }}>
             <Switch>
               <Route path="/Feedback">
                 <FeedbackPage />
@@ -79,23 +86,13 @@ function Menu(props) {
                 <ShoppingPage />
               </Route>
               <Route path="/Signup">
-                <SignUpPage />
+                {props.isLoggedIn ? <ShoppingPage /> : <SignUpPage />}
               </Route>
             </Switch>
           </div>
         </div>
       </Router>
-      <div
-        id="myAlert"
-        hidden={true}
-        className="alert alert-warning alert-dismissible fixed-top fade show"
-        role="alert"
-      >
-        <strong>No access!</strong>
-        {!props.isLoggedIn
-          ? " Signup first"
-          : " Already signed up. Click 'Feedback' to reset"}
-      </div>
+      <Alert isLoggedIn={props.isLoggedIn} />
     </div>
   );
 }

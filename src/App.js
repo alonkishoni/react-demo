@@ -7,8 +7,8 @@ import "./App.css";
 
 function App() {
   const loggedIn = useSelector((state) => state.loggedIn);
-  const user = useSelector((state) => state.formDetails.firstName);
-
+  const user = localStorage.getItem("currentUser");
+  console.log(user);
   return <Menu username={user} isLoggedIn={loggedIn} className="h-100" />;
 }
 

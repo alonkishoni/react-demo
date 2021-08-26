@@ -10,7 +10,11 @@ const initialFormDetails = {
 function Reducer(
   state = {
     formDetails: initialFormDetails,
-    loggedIn: false,
+    loggedIn:
+      localStorage.getItem("currentUser") === "" ||
+      localStorage.getItem("currentUser") === null
+        ? false
+        : true,
   },
   action
 ) {

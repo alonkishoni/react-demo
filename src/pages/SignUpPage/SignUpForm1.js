@@ -11,7 +11,7 @@ function SignUpForm1(props) {
               className="form-control mb-2"
               placeholder="First Name"
               required="required"
-              minlength="2"
+              minLength="2"
               maxLength="15"
               ref={props.firstNameInputRef}
             ></input>
@@ -24,7 +24,7 @@ function SignUpForm1(props) {
               className="form-control mb-2"
               placeholder="Last Name"
               required="required"
-              minlength="2"
+              minLength="2"
               maxLength="15"
               ref={props.lastNameInputRef}
             ></input>

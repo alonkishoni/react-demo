@@ -13,8 +13,12 @@
 
 input:required:invalid,
 input:focus:invalid {
-  border-color: red;
+  border: 3px solid #ff00007c;
+}
+input:placeholder-shown {
+  border: 1px solid #ced4da !important;
+  background-color: rgba(189, 189, 189, 0.466);
 }
 input:required:valid {
-  border-color: none;
+  background-color: rgba(255, 255, 255, 0.103);
 }

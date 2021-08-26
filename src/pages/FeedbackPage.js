@@ -19,7 +19,7 @@ function FeedbackPage() {
   return (
     <div className="container">
       <h2 className="text-center">Feedback</h2>
-      <div class="col-md-12 text-center">
+      <div className="col-md-12 text-center">
         <button onClick={reset} className="btn btn-primary">
           Reset
         </button>
