@@ -27,8 +27,8 @@ function Menu(props) {
       <Header isLoggedIn={props.isLoggedIn} username={props.username} />
       <Router>
         <div className="row h-100">
-          <div className="col-2 bg-light ">
-            <ul className="list-group" style={{ marginTop: 100 }}>
+          <div className="col-2 bg-light navbar-light ">
+            <ul className="navbar-nav" style={{ marginTop: 100 }}>
               <li
                 className="p-3 nav-item"
                 onClick={!props.isLoggedIn ? undefined : noAccessAlert}
@@ -77,7 +77,7 @@ function Menu(props) {
             {props.isLoggedIn === false && <Redirect to="/Signup" />}
           </div>
 
-          <div className="col-9" style={{ marginTop: 110 }}>
+          <div className="col-10" style={{ marginTop: 110 }}>
             <Switch>
               <Route path="/Feedback">
                 <FeedbackPage />
@@ -86,7 +86,11 @@ function Menu(props) {
                 <ShoppingPage />
               </Route>
               <Route path="/Signup">
-                {props.isLoggedIn ? <ShoppingPage /> : <SignUpPage />}
+                {props.isLoggedIn ? (
+                  <Redirect to="/Shopping" />
+                ) : (
+                  <SignUpPage />
+                )}
               </Route>
             </Switch>
           </div>

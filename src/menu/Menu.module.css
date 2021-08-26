@@ -9,3 +9,7 @@
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
 }
+
+.nav-link.active {
+  color: yellow;
+}

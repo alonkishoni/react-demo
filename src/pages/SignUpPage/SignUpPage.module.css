@@ -17,8 +17,7 @@ input:focus:invalid {
 }
 input:placeholder-shown {
   border: 1px solid #ced4da !important;
-  background-color: rgba(189, 189, 189, 0.466);
 }
 input:required:valid {
-  background-color: rgba(255, 255, 255, 0.103);
+  border: 1px solid #ced4da !important;
 }
